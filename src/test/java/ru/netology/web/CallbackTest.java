@@ -52,6 +52,29 @@ public class CallbackTest {
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__content")).click();
         String text = driver.findElement(By.className("Success_successBlock__2L3Cw")).getText();
-        assertEquals("  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.",text);
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.",text.trim());
+    }
+    @Test
+    void NegativeFamilyTest () {
+        driver.get("http://localhost:9999/");
+        List<WebElement> list = driver.findElements(By.className("input__control"));
+        list.get(0).sendKeys("Alex");
+        list.get(1).sendKeys("+79265612740");
+        driver.findElement(By.className("checkbox__box")).click();
+        driver.findElement(By.className("button__content")).click();
+        String text = driver.findElement(By.className("input__sub")).getText();
+        assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.",text.trim());
+    }
+
+    @Test
+    void EmptyCheckBoxTest () {
+        driver.get("http://localhost:9999/");
+        List<WebElement> list = driver.findElements(By.className("input__control"));
+        list.get(0).sendKeys("Александр Вергизов");
+        list.get(1).sendKeys("+7926561274");
+        //driver.findElement(By.className("checkbox__box")).click();
+        driver.findElement(By.className("button__content")).click();
+        String text = driver.findElement(By.className("checkbox__text")).getText();
+        assertEquals("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй", text.trim());
     }
 }
