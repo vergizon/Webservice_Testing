@@ -40,7 +40,7 @@ public class CallbackTest {
     }
 
     @Test
-    void Positivetest (){
+    void shouldSendSuccessfulFormSuitAllRequires (){
         driver.get("http://localhost:9999/");
         List<WebElement> list = driver.findElements(By.className("input__control"));
         list.get(0).sendKeys("Александр");
@@ -55,7 +55,7 @@ public class CallbackTest {
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.",text.trim());
     }
     @Test
-    void NegativeFamilyTest () {
+    void shouldNotSendSuccessfulFormFillingEnglishName () {
         driver.get("http://localhost:9999/");
         List<WebElement> list = driver.findElements(By.className("input__control"));
         list.get(0).sendKeys("Alex");
@@ -67,7 +67,7 @@ public class CallbackTest {
     }
 
     @Test
-    void EmptyCheckBoxTest () {
+    void shouldNotSendSuccessfulFormDueToEmptyCheckBox () {
         driver.get("http://localhost:9999/");
         List<WebElement> list = driver.findElements(By.className("input__control"));
         list.get(0).sendKeys("Александр Вергизов");
