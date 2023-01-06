@@ -41,11 +41,8 @@ public class CallbackTest {
 
     @Test
     void shouldSendSuccessfulFormSuitAllRequires (){
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("Сергеев-Петров Александр");
         driver.findElement(By.cssSelector("[data-test-id=\"phone\"] input")).sendKeys("+79195645454");
-        //driver.findElement(By.className("input__control")).sendKeys("Alex");
-        //driver.findElement(By.className()).sendKeys("+79265612740");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__content")).click();
         String text = driver.findElement(By.cssSelector("[data-test-id=\"order-success\"]")).getText();
@@ -53,7 +50,6 @@ public class CallbackTest {
     }
     @Test
     void shouldNotSendSuccessfulFormFillingEnglishName () {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("Alex");
         driver.findElement(By.cssSelector("[data-test-id=\"phone\"] input")).sendKeys("+79195645454");
         driver.findElement(By.className("checkbox__box")).click();
@@ -64,10 +60,8 @@ public class CallbackTest {
 
     @Test
     void shouldNotSendSuccessfulFormDueToEmptyCheckBox () {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("Сергеев-Петров Александр");
         driver.findElement(By.cssSelector("[data-test-id=\"phone\"] input")).sendKeys("+79195645454");
-        //driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__content")).click();
         String text = driver.findElement(By.cssSelector("[data-test-id=\"agreement\"].input_invalid .checkbox__text")).getText();
         assertEquals("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй", text.trim());
@@ -75,7 +69,6 @@ public class CallbackTest {
 
     @Test
     void shouldNotSendSuccessfulFormDueToEmptyNameBox () {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id=\"phone\"] input")).sendKeys("+79195645454");
         driver.findElement(By.className("checkbox__box")).click();
@@ -86,7 +79,6 @@ public class CallbackTest {
 
     @Test
     void shouldNotSendSuccessfulFormDueToEmptyPhoneBox () {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("Сергеев-Петров Александр");
         driver.findElement(By.cssSelector("[data-test-id=\"phone\"] input")).sendKeys("");
         driver.findElement(By.className("checkbox__box")).click();
@@ -97,7 +89,6 @@ public class CallbackTest {
 
     @Test
     void shouldNotSendSuccessfulFormFillingPhoneBoxByLetters () {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("Сергеев-Петров Александр");
         driver.findElement(By.cssSelector("[data-test-id=\"phone\"] input")).sendKeys(":Жаба");
         driver.findElement(By.className("checkbox__box")).click();
@@ -108,7 +99,6 @@ public class CallbackTest {
 
     @Test
     void shouldNotSendSuccessfulFormFillingNameBoxByFigures () {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("111");
         driver.findElement(By.cssSelector("[data-test-id=\"phone\"] input")).sendKeys(":+79195645454");
         driver.findElement(By.className("checkbox__box")).click();
